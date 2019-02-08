@@ -2,9 +2,13 @@
 <% @tasks.each do |task| %>
 
   <% if task.completed %>
-    <p><i class="far fa-check-square"></i><%= link_to task.title, task_path(task) %></p>
+    <p><i class="far fa-check-square"></i><%= link_to task.title, task_path(task) %>
+      <i class="fas fa-trash-alt"></i><%= link_to "delete", task_path(task), method: :delete, data: { confirm: "Are you sure?" } %>
+    </p>
   <% else %>
-    <p><i class="far fa-square"></i><%= link_to task.title, task_path(task) %></p>
+    <p><i class="far fa-square"></i><%= link_to task.title, task_path(task) %>
+      <i class="fas fa-trash-alt"></i><%= link_to "delete", task_path(task), method: :delete, data: { confirm: "Are you sure?" } %>
+    </p>
   <% end %>
 <% end %>
 
