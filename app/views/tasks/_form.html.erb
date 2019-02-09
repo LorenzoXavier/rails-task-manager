@@ -1,9 +1,21 @@
-<%= form_for(task) do |t| %>
-  <%= t.label :title %>
-  <%= t.text_field :title %>
+<%= form_for(@task) do |f| %>
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
 
-  <%= t.label :description %>
-  <%= t.text_field :description %>
+  <div class="form-group">
+    <%= f.label :details %>
+    <%= f.text_area :details, class: 'form-control' %>
+  </div>
 
-  <%= t.submit %>
+  <% unless f.object.new_record? %>
+    <div class="checkbox">
+      <label>
+        <%= f.check_box :completed %> Completed
+      </label>
+    </div>
+  <% end %>
+
+  <%= f.submit class: 'btn btn-primary' %>
 <% end %>

@@ -1,19 +1,39 @@
-<h1>My tasks</h1>
-<% @tasks.each do |task| %>
+<div class="card-trip">
+  <img src="https://picsum.photos/3000/600?random">
+  <div class="card-trip-infos">
+    <div>
+      <h1>My tasks</h1>
+      <p>Someone has to do them!</p>
+    </div>
+    <h2 class="card-trip-pricing"></h2>
+    <img src='https://kitt.lewagon.com/placeholder/users/krokrob' class="card-trip-user avatar-bordered"/>
+  </div>
+</div>
 
-  <% if task.completed %>
-    <p><i class="far fa-check-square"></i><%= link_to task.title, task_path(task) %>
-      <i class="fas fa-trash-alt"></i><%= link_to "delete", task_path(task), method: :delete, data: { confirm: "Are you sure?" } %>
-    </p>
-  <% else %>
-    <p><i class="far fa-square"></i><%= link_to task.title, task_path(task) %>
-      <i class="fas fa-trash-alt"></i><%= link_to "delete", task_path(task), method: :delete, data: { confirm: "Are you sure?" } %>
-    </p>
+
+
+<ul id="tasks">
+  <% @tasks.each do |task| %>
+    <li>
+      <% if task.completed %>
+        <i class="fa fa-check-square-o"></i>
+      <% else %>
+        <i class="fa fa-square-o"></i>
+      <% end %>
+      <%= link_to task.title, task_path(task.id) %>
+      ·
+      <%= link_to task_path(task.id), method: :delete, data: { confirm: "Delete #{task.title}?" } do %>
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+      <% end %>
+    </li>
   <% end %>
-<% end %>
+</ul>
 
-<p>------------------------------------</p>
-<%= link_to "Add a task", new_task_path %>
+<hr>
+
+<%= link_to new_task_path do %>
+  <i class="fa fa-plus"></i> Add a new task
+<% end %>
 
 <%# @restaurants.each do |restaurant| %>
   <%#= link_to restaurant.name, restaurant_path(restaurant) %>
